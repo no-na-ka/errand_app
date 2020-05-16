@@ -1,7 +1,7 @@
 <template>
     <section>
-        <div>hello</div>
-        {{ msg }}
+        <div>hello {{ status }}</div>
+        <pre>{{ user }}</pre>
     </section>
 </template>
 
@@ -10,11 +10,14 @@
 export default {
     name: 'Home',
     computed: {
-        msg () {
-            return this.$store.state.status
+        user () {
+            let user = this.$store.state.user
+            return user
+        },
+        status() {
+            let status = this.$store.state.status
+            return status
         }
     },
-
 }
-
 </script>

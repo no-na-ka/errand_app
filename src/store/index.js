@@ -5,14 +5,18 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
+        user: {},
         status: false
     },
     getters: {
 
     },
     mutations: {
-        isUserStatusChange(e, f) {
-            console.log(e, f)
+        isUser(state, property) {
+            state.user = property
+        },
+        isUserSignInStatus(state, status) {
+            state.status = status
         }
     },
     actions: {

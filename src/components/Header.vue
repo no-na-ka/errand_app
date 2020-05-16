@@ -4,9 +4,9 @@
 
         <nav>
             <ul>
-                <li><Login /></li>
-                <li><LoginOrUp /></li>
-                <li><LogOut /></li>
+                <li><SignIn /></li>
+                <li><SignUp /></li>
+                <li><SignOut /></li>
             </ul>
         </nav>
         
@@ -14,16 +14,16 @@
 </template>
 
 <script>
-import Login from './Register/LogIn'
-import LoginOrUp from './Register/LogInOrUp'
-import LogOut from './Register/LogOut'
+import SignIn from  './Register/SignIn'
+import SignUp from  './Register/SignUp'
+import SignOut from './Register/SignOut'
 
 export default {
     name: 'Header',
     components: {
-        Login,
-        LoginOrUp,
-        LogOut
+        SignIn,
+        SignUp,
+        SignOut
     }
 }
 </script>
