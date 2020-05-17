@@ -6,9 +6,13 @@
 </template>
 
 <script>
+import firebase from '../Firebase'
 
 export default {
     name: 'Home',
+    created: function() {
+        firebase.onAuth();
+    },
     computed: {
         user () {
             let user = this.$store.state.user
