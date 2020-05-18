@@ -1,0 +1,31 @@
+<template>
+    <section>
+        <form>
+            <input type="text" name="errandItemName"  v-model="shareId">
+        </form>
+        共有ID: {{ shareId }}
+
+        <button type="button" @click="setShareId()">set</button>
+    </section>
+</template>
+
+<script>
+import firebase from '../../Firebase'
+
+export default {
+    name: 'errandItem',
+    data() {
+        return {
+            shareId: '',
+        }
+    },
+    methods: {
+        setShareId() {
+            let shareIdNum = this.shareId
+            firebase.setShareId(shareIdNum, this.$store.state.user.uid)
+        }
+
+    }
+    
+}
+</script>
