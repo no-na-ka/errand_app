@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         user: {},
-        status: false
+        status: false,
+        list: {}
     },
     getters: {
 
@@ -17,7 +18,11 @@ export default new Vuex.Store({
         },
         isUserSignInStatus(state, status) {
             state.status = status
+        },
+        isListItems(state, listItem) {
+            state.list = listItem
         }
+
     },
     actions: {
 
