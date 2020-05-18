@@ -3,6 +3,7 @@
     <Header />
     <Home />
     <ErrandMenuInput />
+    <ShareIdInput />
     <Footer />
   </div>
 </template>
@@ -11,6 +12,7 @@
 import Home from './components/Home'
 import Header from './components/Header'
 import ErrandMenuInput from './components/ErrandMenu/ErrandMenuInput'
+import ShareIdInput from './components/ShareIdInput/ShareIdInput'
 import Footer from './components/Footer'
 
 export default {
@@ -19,6 +21,7 @@ export default {
     Header,
     Home,
     ErrandMenuInput,
+    ShareIdInput,
     Footer
   }
 }

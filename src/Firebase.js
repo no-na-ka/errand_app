@@ -30,8 +30,8 @@ export default {
   onAuth() {
     firebase.auth().onAuthStateChanged(user => {
       user = user ? user : {};
+
       store.commit('isUser', user);
-      store.commit('isUserSignInStatus', user.uid ? true : false);
     });
   },
   // データベースから情報取得
@@ -87,5 +87,18 @@ export default {
     .database()
     .ref(roomId)
     .push(dataDisc);
+  },
+  ////////// 買い物リスト追加
+  setShareId(e, f) {
+    const path = f + '/shareId'
+    console.log(path)
+    console.log(e)
+    firebase
+    .database()
+    .ref(path)
+    .set(e)
+
+    store.commit('isShareId', e)
+
   }
 }

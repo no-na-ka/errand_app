@@ -6,23 +6,22 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         user: {},
-        status: false,
-        list: {}
+        list: {},
+        shareId: {},
     },
     getters: {
 
     },
     mutations: {
-        isUser(state, property) {
-            state.user = property
-        },
-        isUserSignInStatus(state, status) {
-            state.status = status
+        isUser(state, userItem) {
+            state.user = userItem
         },
         isListItems(state, listItem) {
             state.list = listItem
+        },
+        isShareId(state, ShareIdItem) {
+            state.shareId = ShareIdItem
         }
-
     },
     actions: {
 

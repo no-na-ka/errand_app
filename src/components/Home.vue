@@ -2,6 +2,7 @@
     <section>
         <div>hello</div>
         <pre>{{ user }}</pre>
+        <pre>{{ shareId }}</pre>
         <pre>{{ list }}</pre>
     </section>
 </template>
@@ -19,6 +20,10 @@ export default {
         user () {
             let user = this.$store.state.user
             return user.uid
+        },
+        shareId() {
+            let shareId = this.$store.state.shareId
+            return shareId
         },
         list () {
             let list = this.$store.state.list
