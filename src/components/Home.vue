@@ -1,7 +1,8 @@
 <template>
     <section>
-        <div>hello {{ status }}</div>
+        <div>hello</div>
         <pre>{{ user }}</pre>
+        <pre>{{ list }}</pre>
     </section>
 </template>
 
@@ -12,16 +13,17 @@ export default {
     name: 'Home',
     created: function() {
         firebase.onAuth();
+        firebase.showList();
     },
     computed: {
         user () {
             let user = this.$store.state.user
-            return user
+            return user.uid
         },
-        status() {
-            let status = this.$store.state.status
-            return status
-        }
+        list () {
+            let list = this.$store.state.list
+            return list
+        },
     },
 }
 </script>
