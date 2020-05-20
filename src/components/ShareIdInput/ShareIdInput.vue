@@ -22,7 +22,9 @@ export default {
     methods: {
         setShareId() {
             let shareIdNum = this.shareId
-            firebase.setShareId(shareIdNum, this.$store.state.user.uid)
+            let connectId = this.$store.state.user.uid
+
+            firebase.setShareId(shareIdNum, connectId)
         }
 
     }

@@ -3,7 +3,6 @@
         <div>hello</div>
         <pre>{{ user }}</pre>
         <pre>{{ shareId }}</pre>
-        <pre>{{ list }}</pre>
     </section>
 </template>
 
@@ -13,8 +12,9 @@ import firebase from '../Firebase'
 export default {
     name: 'Home',
     created: function() {
-        firebase.onAuth();
-        firebase.showList();
+        firebase.onAuth()
+        firebase.onShareId()
+        firebase.showList()
     },
     computed: {
         user () {

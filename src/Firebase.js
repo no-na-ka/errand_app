@@ -30,15 +30,31 @@ export default {
   onAuth() {
     firebase.auth().onAuthStateChanged(user => {
       user = user ? user : {};
-
       store.commit('isUser', user);
     });
   },
+  onShareId() {
+    firebase.auth().onAuthStateChanged(user => {
+      firebase.database().ref(user.uid).on('value', function(snapshot) {
+        store.commit('isShareId', snapshot.val().shareId)
+      })
+    })
+  },
   // データベースから情報取得
   showList() {
+    let shareIdRef
+    
     firebase.auth().onAuthStateChanged(user => {
+      if(user !== null) { // ログイン情報がなかった(nullの)場合呼び出さない
+        firebase.database().ref(user.uid).on('value', function(snapshot) {
+          shareIdRef = snapshot.val().shareId
 
-      firebase.database().ref(user.uid).on('value', function(snapshot) {
+          if(user.uid === shareIdRef) {
+            shareIdRef = user.uid
+          }
+        })
+      }
+      firebase.database().ref(shareIdRef).on('value', function(snapshot) {
         store.commit('isListItems', snapshot.val())
       })
     })
@@ -88,11 +104,9 @@ export default {
     .ref(roomId)
     .push(dataDisc);
   },
-  ////////// 買い物リスト追加
+  ////////// 共有ID追加
   setShareId(e, f) {
     const path = f + '/shareId'
-    console.log(path)
-    console.log(e)
     firebase
     .database()
     .ref(path)
