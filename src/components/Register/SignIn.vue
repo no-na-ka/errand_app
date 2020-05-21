@@ -23,6 +23,7 @@ export default {
     methods: {
         signInMailSubmit() {
             firebase.signInMail(this.signInMail, this.signInPass);
+            firebase.showList()
         }
     },
 }

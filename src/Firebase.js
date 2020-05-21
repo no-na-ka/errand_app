@@ -25,6 +25,8 @@ export default {
     firebase.initializeApp(firebaseConfig);
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
   },
+
+
   ////////// 読み込んだときの処理
   // ログイン情報保持用
   onAuth() {
@@ -35,9 +37,13 @@ export default {
   },
   onShareId() {
     firebase.auth().onAuthStateChanged(user => {
-      firebase.database().ref(user.uid).on('value', function(snapshot) {
-        store.commit('isShareId', snapshot.val().shareId)
-      })
+      if(user !== null) {
+        firebase.database().ref(user.uid).on('value', function(snapshot) {
+          if (snapshot.val() !== null) { // サインアップ時は動かさない
+            store.commit('isShareId', snapshot.val().shareId)
+          }
+        })
+      }
     })
   },
   // データベースから情報取得
@@ -47,7 +53,9 @@ export default {
     firebase.auth().onAuthStateChanged(user => {
       if(user !== null) { // ログイン情報がなかった(nullの)場合呼び出さない
         firebase.database().ref(user.uid).on('value', function(snapshot) {
-          shareIdRef = snapshot.val().shareId
+          if (snapshot.val() !== null) { // サインアップ時は動かさない
+            shareIdRef = snapshot.val().shareId
+          }
 
           if(user.uid === shareIdRef) {
             shareIdRef = user.uid
@@ -59,10 +67,14 @@ export default {
       })
     })
   },
+
+
   ////////// サインアウトアウト
   signOut() {
     firebase.auth().signOut()
   },
+
+
   ////////// サインイン
   // メール
   signInMail(mail, pass) {
@@ -82,19 +94,24 @@ export default {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider)
   },
+
+
   ////////// サインアップ
   // メール
   signUpMail(mail, pass) {
     firebase
     .auth()
     .createUserWithEmailAndPassword(mail, pass)
-    .then(() => {
-        console.log('ユーザ作成に成功');
+    .then((user) => {
+      console.log(user)
     })
     .catch((error) => {
-        console.error('ユーザ作成に失敗:', error);
+        // 失敗したときの処理
+        store.commit('isUser', error)
     })
   },
+
+
   ////////// 買い物リスト追加
   setErandList(dataId, dataDisc) {
     let roomId = dataId
@@ -104,6 +121,8 @@ export default {
     .ref(roomId)
     .push(dataDisc);
   },
+
+
   ////////// 共有ID追加
   setShareId(e, f) {
     const path = f + '/shareId'
