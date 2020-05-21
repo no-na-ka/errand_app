@@ -32,3 +32,17 @@ export default {
     },
 }
 </script>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+button {
+    appearance: none;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+}
+</style>
