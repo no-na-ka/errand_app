@@ -2,12 +2,13 @@
   <div id="app">
     <Header />
 
-    <Home />
-    <ErrandMenuList />
+    <main>
+      <Home />
+      <ErrandMenuList />
 
-    <ErrandMenuInput />
-    <ShareIdInput />
-
+      <ErrandMenuInput />
+      <ShareIdInput />
+    </main>
     <Footer />
   </div>
 </template>
@@ -22,6 +23,12 @@ import Footer from './components/Footer'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      isShowHome: true,
+      isShowProfile: false,
+    }
+  },
   components: {
     Header,
     Home,
@@ -29,6 +36,7 @@ export default {
     ErrandMenuList,
     ShareIdInput,
     Footer
-  }
+  },
+
 }
 </script>

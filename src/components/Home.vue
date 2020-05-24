@@ -1,8 +1,6 @@
 <template>
-    <section>
-        <div>hello</div>
-        <pre>{{ user }}</pre>
-        <pre>{{ shareId }}</pre>
+    <section v-if="isShowHome">
+        <div>お買い物リストだよっ</div>
     </section>
 </template>
 
@@ -11,7 +9,8 @@ import firebase from '../Firebase'
 
 export default {
     name: 'Home',
-    created: function() {
+    props: ['isShowHome'],
+    created() {
         firebase.onAuth()
         firebase.onShareId()
         firebase.showList()
@@ -43,6 +42,13 @@ export default {
 button {
     appearance: none;
     border: 1px solid #ddd;
-    padding: 8px 16px;
+    padding: 0 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+}
+main {
+    min-height: 92vh;
 }
 </style>

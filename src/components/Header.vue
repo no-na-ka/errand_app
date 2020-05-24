@@ -1,23 +1,26 @@
 <template>
-    <header>
+    <header class="header">
         <div>header logo だよ</div>
 
-        <nav>
-            <button
-                type="button"
-                v-on:click="active">サインイン/サインアップ</button>
-
-            <ul 
-                v-bind:class="{ active:isActive }"
-                class="nav-register">
-                <li v-if="showFlg">
-                    <SignIn />
-                    <SignUp />
+        <button
+            type="button"
+            v-on:click="active">入
+        </button>
+        <nav
+            :class="{ active:isRegisterActive }"
+            class="nav-register">
+            <ul class="nav-register__list">
+                <li
+                    v-if="showFlg"
+                    class="nav-register__list-item">
+                    <SignIn v-bind:isSignInFlg="isSignInFlg" @toggleSignUp="toggleSignUp" />
+                    <SignUp v-bind:isSignUpFlg="isSignUpFlg" @toggleSignIn="toggleSignIn" />
                 </li>
-                <li v-else>
+                <li
+                    v-else
+                    class="nav-register__list-item">
                     <SignOut />
                 </li>
-                {{ showFlg }}
             </ul>
         </nav>
         
@@ -33,7 +36,9 @@ export default {
     name: 'Header',
     data() {
         return {
-            isActive: false
+            isRegisterActive: false,
+            isSignInFlg: true,
+            isSignUpFlg: false,
         }
     },
     components: {
@@ -43,34 +48,52 @@ export default {
     },
     computed: {
         showFlg() {
-            let showFlg = this.$store.getters.isShowFlg 
+            let showFlg = this.$store.getters.isShowFlg
             return showFlg
         }
     },
     methods: {
         active() {
-            this.isActive = !this.isActive
+            this.isRegisterActive = !this.isRegisterActive
+        },
+        toggleSignUp() {
+            this.isSignInFlg = false,
+            this.isSignUpFlg = true
+        },
+        toggleSignIn() {
+            this.isSignInFlg = true,
+            this.isSignUpFlg = false
         }
     }
 }
 </script>
 
 <style>
-header {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     position: relative;
-    height: 60px;
+    height: 8vh;
+    padding: 0 16px;
 }
 
 .nav-register {
-    display: none;
+    transition: 0.5s;
+    position: absolute;
+    width: 90vw;
+    top: -80vw;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding: 24px;
+    background-color: #fff;
+    border-radius: 4px;    
+    box-shadow: 0px 0px 6px 1px #ccc;
 }
 
 .nav-register.active {
-    display: block;
-    position: absolute;
+    top: 80px;
 }
 </style>

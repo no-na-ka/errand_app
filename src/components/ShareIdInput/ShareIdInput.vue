@@ -1,5 +1,5 @@
 <template>
-    <section>
+    <section v-if="isShowProfile">
         <form>
             <input type="text" name="errandItemName"  v-model="shareId">
         </form>
@@ -14,6 +14,7 @@ import firebase from '../../Firebase'
 
 export default {
     name: 'errandItem',
+    props:['isShowProfile'],
     data() {
         return {
             shareId: '',
