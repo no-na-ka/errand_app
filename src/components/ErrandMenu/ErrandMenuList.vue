@@ -1,5 +1,5 @@
 <template>
-    <section v-if="isShowHome">
+    <section>
         <ul>
             <li>リスト</li>
         </ul>

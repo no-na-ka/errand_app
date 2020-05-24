@@ -1,5 +1,5 @@
 <template>
-    <section v-if="isShowProfile">
+    <section>
         <form>
             <input type="text" name="errandItemName"  v-model="shareId">
         </form>

@@ -4,7 +4,9 @@
 
         <button
             type="button"
-            v-on:click="active">入
+            v-on:click="active">
+                <span v-if="showFlg">入</span>
+                <span v-else>出</span>
         </button>
         <nav
             :class="{ active:isRegisterActive }"
@@ -13,8 +15,12 @@
                 <li
                     v-if="showFlg"
                     class="nav-register__list-item">
-                    <SignIn v-bind:isSignInFlg="isSignInFlg" @toggleSignUp="toggleSignUp" />
-                    <SignUp v-bind:isSignUpFlg="isSignUpFlg" @toggleSignIn="toggleSignIn" />
+                    <SignIn
+                        :isSignInFlg="isSignInFlg"
+                        @toggleSignUp="toggleSignUp" />
+                    <SignUp
+                        :isSignUpFlg="isSignUpFlg"
+                        @toggleSignIn="toggleSignIn" />
                 </li>
                 <li
                     v-else

@@ -27,7 +27,7 @@
     </div>
 </template>
 
-<script>
+<script scoped>
 import firebase from '../../Firebase'
 
 export default {

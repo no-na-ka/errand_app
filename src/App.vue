@@ -3,11 +3,32 @@
     <Header />
 
     <main>
-      <Home />
-      <ErrandMenuList />
+      <Home 
+        v-if="isShowHome"
+        @showHome="showHome" />
+      <ErrandMenuList
+        v-if="isShowHome"
+        @showHome="onShowHome" />
+      <button
+        type="button"
+        v-if="isShowHome"
+        @click="isChangeShowProfile">
+          買い物りすと入れちゃう
+      </button>
 
-      <ErrandMenuInput />
-      <ShareIdInput />
+      <ErrandMenuInput
+        v-if="isShowProfile"
+        @showHome="showProfile" />
+      <ShareIdInput
+        v-if="isShowProfile"
+        @showHome="onShowProfile" />
+      <button
+        type="button"
+        v-if="isShowProfile"
+        @click="isChangeShowHome">
+          買い物りすと見ちゃう
+      </button>
+
     </main>
     <Footer />
   </div>
@@ -37,6 +58,16 @@ export default {
     ShareIdInput,
     Footer
   },
+  methods: {
+    isChangeShowProfile() {
+      this.isShowHome = false,
+      this.isShowProfile = true
+    },
+    isChangeShowHome() {
+      this.isShowHome = true,
+      this.isShowProfile = false
+    },
+  }
 
 }
 </script>

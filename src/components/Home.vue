@@ -1,5 +1,5 @@
 <template>
-    <section v-if="isShowHome">
+    <section>
         <div>お買い物リストだよっ</div>
     </section>
 </template>
@@ -29,6 +29,11 @@ export default {
             return list
         },
     },
+    methods: {
+        showHome() {
+            this.$emit('isChangeShowProfile')
+        }
+    }
 }
 </script>
 
@@ -49,6 +54,7 @@ button {
     height: 36px;
 }
 main {
-    min-height: 92vh;
+    min-height: 88vh;
+    padding: 16px;
 }
 </style>
