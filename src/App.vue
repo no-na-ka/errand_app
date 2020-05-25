@@ -4,11 +4,9 @@
 
     <main>
       <Home 
-        v-if="isShowHome"
-        @showHome="showHome" />
+        v-if="isShowHome" />
       <ErrandMenuList
-        v-if="isShowHome"
-        @showHome="onShowHome" />
+        v-if="isShowHome" />
       <button
         type="button"
         v-if="isShowHome"
@@ -17,11 +15,9 @@
       </button>
 
       <ErrandMenuInput
-        v-if="isShowProfile"
-        @showHome="showProfile" />
+        v-if="isShowProfile" />
       <ShareIdInput
-        v-if="isShowProfile"
-        @showHome="onShowProfile" />
+        v-if="isShowProfile" />
       <button
         type="button"
         v-if="isShowProfile"
