@@ -2,12 +2,30 @@
   <div id="app">
     <Header />
 
-    <Home />
-    <ErrandMenuList />
+    <main>
+      <Home 
+        v-if="isShowHome" />
+      <ErrandMenuList
+        v-if="isShowHome" />
+      <button
+        type="button"
+        v-if="isShowHome"
+        @click="isChangeShowProfile">
+          買い物りすと入れちゃう
+      </button>
 
-    <ErrandMenuInput />
-    <ShareIdInput />
+      <ErrandMenuInput
+        v-if="isShowProfile" />
+      <ShareIdInput
+        v-if="isShowProfile" />
+      <button
+        type="button"
+        v-if="isShowProfile"
+        @click="isChangeShowHome">
+          買い物りすと見ちゃう
+      </button>
 
+    </main>
     <Footer />
   </div>
 </template>
@@ -22,6 +40,12 @@ import Footer from './components/Footer'
 
 export default {
   name: 'App',
+  data() {
+    return {
+      isShowHome: true,
+      isShowProfile: false,
+    }
+  },
   components: {
     Header,
     Home,
@@ -29,6 +53,17 @@ export default {
     ErrandMenuList,
     ShareIdInput,
     Footer
+  },
+  methods: {
+    isChangeShowProfile() {
+      this.isShowHome = false,
+      this.isShowProfile = true
+    },
+    isChangeShowHome() {
+      this.isShowHome = true,
+      this.isShowProfile = false
+    },
   }
+
 }
 </script>

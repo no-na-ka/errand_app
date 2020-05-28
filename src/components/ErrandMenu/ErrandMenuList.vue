@@ -15,6 +15,7 @@
 
 export default {
     name: 'errandMenuItem',
+    props: ['isShowHome'],
     computed: {
         erranMenuListItem() {
             let listItem = this.$store.state.list

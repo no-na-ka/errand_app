@@ -10,7 +10,10 @@ export default new Vuex.Store({
         shareId: {},
     },
     getters: {
-
+        isShowFlg(state) {
+            let showFlg = Object.keys(state.user).length === 0
+            return showFlg
+        }
     },
     mutations: {
         isUser(state, userItem) {
@@ -24,6 +27,7 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        
+        isSignInUpFlg() {
+        }
     }
 })
