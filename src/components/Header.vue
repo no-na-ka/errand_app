@@ -28,8 +28,7 @@
                     <SignOut />
                 </li>
             </ul>
-        </nav>
-        
+        </nav>        
     </Header>
 </template>
 
