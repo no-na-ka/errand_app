@@ -5,16 +5,10 @@
 </template>
 
 <script>
-import firebase from '../Firebase'
 
 export default {
     name: 'Home',
     props: ['isShowHome'],
-    created() {
-        firebase.onAuth()
-        firebase.onShareId()
-        firebase.showList()
-    },
     computed: {
         user () {
             let user = this.$store.state.user

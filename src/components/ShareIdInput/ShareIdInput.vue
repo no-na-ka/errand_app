@@ -1,5 +1,6 @@
 <template>
     <section>
+        {{ store.state.user.uid }}
         <form>
             <input type="text" name="errandItemName"  v-model="shareId">
         </form>

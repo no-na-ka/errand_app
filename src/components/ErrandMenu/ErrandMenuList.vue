@@ -4,26 +4,25 @@
             <li>リスト</li>
         </ul>
         <ul>
-            <li v-for="list in erranMenuListItem" :key="list.index">
-                {{ list.cost }}
+            <li v-for="list in lists" :key="list.index">
+                {{ list.cost }}<br>
+                {{ list.name }}<br>
+                {{ list.count }}
             </li>
         </ul>
+        <pre>{{ lists }}</pre>
     </section>
 </template>
 
 <script>
-
 export default {
     name: 'errandMenuItem',
-    props: ['isShowHome'],
     computed: {
-        erranMenuListItem() {
-            let listItem = this.$store.state.list
-            let targetShareId = this.$store.state.shareId
-
-            return listItem[targetShareId]
+        lists() {
+            let list = this.$store.state.list
+            return list
         }
-    },
+    }
     
 }
 </script>
