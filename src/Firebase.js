@@ -19,52 +19,53 @@ firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
 
+
 export default {
   ////////// いつものやつ
   init() {
     firebase.initializeApp(firebaseConfig);
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
   },
-
-
   ////////// 読み込んだときの処理
   // ログイン情報保持用
   onAuth() {
+    console.log(4)
     firebase.auth().onAuthStateChanged(user => {
+      console.log(4-1)
       user = user ? user : {};
-      store.commit('isUser', user);
+      store.dispatch('onUser', user);
+      console.log("スタート")
     });
   },
   onShareId() {
-    firebase.auth().onAuthStateChanged(user => {
-      if(user !== null) {
-        firebase.database().ref(user.uid).on('value', function(snapshot) {
-          if (snapshot.val() !== null) { // サインアップ時は動かさない
-            store.commit('isShareId', snapshot.val().shareId)
-          }
-        })
-      }
+    console.log(5)
+    firebase.database().ref(store.state.user.uid).on('value', function(snapshot) {
+      console.log(5-1)
+      let userId = store.state.user.uid
+      let shareIdValue = snapshot.val()[userId].shareId
+
+      store.dispatch('onShareId', shareIdValue)
     })
   },
   // データベースから情報取得
-  showList() {
-    let shareIdRef
-    
-    firebase.auth().onAuthStateChanged(user => {
-      if(user !== null) { // ログイン情報がなかった(nullの)場合呼び出さない
-        firebase.database().ref(user.uid).on('value', function(snapshot) {
-          if (snapshot.val() !== null) { // サインアップ時は動かさない
-            shareIdRef = snapshot.val().shareId
-          }
+  onShowList() {
+    console.log(6)
+    firebase.database().ref(store.state.user.uid).on('value', function(snapshot) {
+      console.log(6-1)
+      let userId = store.state.user.uid
+      let shareIdValue = snapshot.val()[userId].shareId      
+      let listId
 
-          if(user.uid === shareIdRef) {
-            shareIdRef = user.uid
-          }
-        })
+      if ( userId == shareIdValue ) {
+        listId = userId
+      } else {
+        listId = shareIdValue
       }
-      firebase.database().ref(shareIdRef).on('value', function(snapshot) {
-        store.commit('isListItems', snapshot.val())
-      })
+
+      let listItems = snapshot.val()[listId]
+      delete listItems.shareId
+
+      store.dispatch('onListItems', listItems)
     })
   },
 
@@ -82,11 +83,13 @@ export default {
     .auth()
     .signInWithEmailAndPassword(mail, pass)
     .then((user) => {
-        store.commit('isUser', user)
+      store.dispatch('onUser', user);
+      this.onShareId()
+      this.onShowList()
     })
     .catch((error) => {
         // 失敗したときの処理
-        store.commit('isUser', error)
+        store.dispatch('onUser', error);
     })
   },
   // google
@@ -103,11 +106,12 @@ export default {
     .auth()
     .createUserWithEmailAndPassword(mail, pass)
     .then((user) => {
-      console.log(user)
+      store.dispatch('onUser', user);
+      this.setShareId(user.uid, user.uid)
     })
     .catch((error) => {
         // 失敗したときの処理
-        store.commit('isUser', error)
+        store.dispatch('onUser', error);
     })
   },
 
@@ -131,7 +135,7 @@ export default {
     .ref(path)
     .set(e)
 
-    store.commit('isShareId', e)
+    store.dispatch('onShareId', e)
 
   }
 }

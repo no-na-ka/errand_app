@@ -40,8 +40,7 @@ export default {
     },
     methods: {
         signInMailSubmit() {
-            firebase.signInMail(this.signInMail, this.signInPass);
-            firebase.showList()
+            firebase.signInMail(this.signInMail, this.signInPass)
         },
         changeSignUp() {
             this.$emit('toggleSignUp')

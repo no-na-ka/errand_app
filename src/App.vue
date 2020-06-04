@@ -37,6 +37,7 @@ import ErrandMenuInput from './components/ErrandMenu/ErrandMenuInput'
 import ErrandMenuList from './components/ErrandMenu/ErrandMenuList'
 import ShareIdInput from './components/ShareIdInput/ShareIdInput'
 import Footer from './components/Footer'
+import firebase from './Firebase'
 
 export default {
   name: 'App',
@@ -45,6 +46,14 @@ export default {
       isShowHome: true,
       isShowProfile: false,
     }
+  },
+  created() {
+    console.log(1)
+    firebase.onAuth()
+    console.log(2)
+    firebase.onShareId()
+    console.log(3)
+    firebase.onShowList()
   },
   components: {
     Header,
