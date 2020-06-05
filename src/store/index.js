@@ -7,27 +7,37 @@ export default new Vuex.Store({
     state: {
         user: {},
         list: {},
-        shareId: {},
+        shareId: '',
     },
     getters: {
         isShowFlg(state) {
             let showFlg = Object.keys(state.user).length === 0
             return showFlg
+        },
+        isListShow(state) {
+            return state.list
         }
     },
     mutations: {
-        isUser(state, userItem) {
+        setUser(state, userItem) {
             state.user = userItem
         },
-        isListItems(state, listItem) {
+        setListItems(state, listItem) {
             state.list = listItem
         },
-        isShareId(state, ShareIdItem) {
+        setShareId(state, ShareIdItem) {
             state.shareId = ShareIdItem
         }
     },
     actions: {
-        isSignInUpFlg() {
+        onUser(state, userItem) {
+            state.commit('setUser', userItem)
+        },
+        onListItems(state, listItem) {
+            state.commit('setListItems', listItem)
+        },
+        onShareId(state, ShareIdItem) {
+            state.commit('setShareId', ShareIdItem)
         }
     }
 })

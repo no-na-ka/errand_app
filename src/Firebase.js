@@ -19,52 +19,46 @@ firebase.initializeApp(firebaseConfig);
 
 export const db = firebase.firestore();
 
+
 export default {
   ////////// いつものやつ
   init() {
     firebase.initializeApp(firebaseConfig);
     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
   },
-
-
   ////////// 読み込んだときの処理
   // ログイン情報保持用
   onAuth() {
     firebase.auth().onAuthStateChanged(user => {
       user = user ? user : {};
-      store.commit('isUser', user);
+      store.dispatch('onUser', user);
     });
   },
   onShareId() {
-    firebase.auth().onAuthStateChanged(user => {
-      if(user !== null) {
-        firebase.database().ref(user.uid).on('value', function(snapshot) {
-          if (snapshot.val() !== null) { // サインアップ時は動かさない
-            store.commit('isShareId', snapshot.val().shareId)
-          }
-        })
-      }
+    firebase.database().ref(store.state.user.uid).on('value', function(snapshot) {
+      let userId = store.state.user.uid
+      let shareIdValue = snapshot.val()[userId].shareId
+
+      store.dispatch('onShareId', shareIdValue)
     })
   },
   // データベースから情報取得
-  showList() {
-    let shareIdRef
-    
-    firebase.auth().onAuthStateChanged(user => {
-      if(user !== null) { // ログイン情報がなかった(nullの)場合呼び出さない
-        firebase.database().ref(user.uid).on('value', function(snapshot) {
-          if (snapshot.val() !== null) { // サインアップ時は動かさない
-            shareIdRef = snapshot.val().shareId
-          }
+  onShowList() {
+    firebase.database().ref(store.state.user.uid).on('value', function(snapshot) {
+      let userId = store.state.user.uid
+      let shareIdValue = snapshot.val()[userId].shareId      
+      let listId
 
-          if(user.uid === shareIdRef) {
-            shareIdRef = user.uid
-          }
-        })
+      if ( userId == shareIdValue ) {
+        listId = userId
+      } else {
+        listId = shareIdValue
       }
-      firebase.database().ref(shareIdRef).on('value', function(snapshot) {
-        store.commit('isListItems', snapshot.val())
-      })
+
+      let listItems = snapshot.val()[listId]
+      delete listItems.shareId
+
+      store.dispatch('onListItems', listItems)
     })
   },
 
@@ -82,11 +76,13 @@ export default {
     .auth()
     .signInWithEmailAndPassword(mail, pass)
     .then((user) => {
-        store.commit('isUser', user)
+      store.dispatch('onUser', user);
+      this.onShareId()
+      this.onShowList()
     })
     .catch((error) => {
         // 失敗したときの処理
-        store.commit('isUser', error)
+        store.dispatch('onUser', error);
     })
   },
   // google
@@ -103,11 +99,15 @@ export default {
     .auth()
     .createUserWithEmailAndPassword(mail, pass)
     .then((user) => {
-      console.log(user)
+      store.dispatch('onUser', user);
+
+      let temporaryId = user.user.uid
+
+      this.setShareId(temporaryId, temporaryId)
     })
     .catch((error) => {
         // 失敗したときの処理
-        store.commit('isUser', error)
+        store.dispatch('onUser', error);
     })
   },
 
@@ -131,7 +131,7 @@ export default {
     .ref(path)
     .set(e)
 
-    store.commit('isShareId', e)
+    store.dispatch('onShareId', e)
 
   }
 }

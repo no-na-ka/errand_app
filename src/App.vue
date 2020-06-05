@@ -3,27 +3,32 @@
     <Header />
 
     <main>
+
+      <section class="tab">
+        <button
+          type="button"
+          v-if="isShowHome"
+          @click="isChangeShowProfile">
+            買い物りすと入れちゃう
+        </button>
+        
+        <button
+          type="button"
+          v-if="isShowProfile"
+          @click="isChangeShowHome">
+            買い物りすと見ちゃう
+        </button>
+      </section>
+
       <Home 
         v-if="isShowHome" />
       <ErrandMenuList
         v-if="isShowHome" />
-      <button
-        type="button"
-        v-if="isShowHome"
-        @click="isChangeShowProfile">
-          買い物りすと入れちゃう
-      </button>
 
       <ErrandMenuInput
         v-if="isShowProfile" />
       <ShareIdInput
         v-if="isShowProfile" />
-      <button
-        type="button"
-        v-if="isShowProfile"
-        @click="isChangeShowHome">
-          買い物りすと見ちゃう
-      </button>
 
     </main>
     <Footer />
@@ -37,6 +42,7 @@ import ErrandMenuInput from './components/ErrandMenu/ErrandMenuInput'
 import ErrandMenuList from './components/ErrandMenu/ErrandMenuList'
 import ShareIdInput from './components/ShareIdInput/ShareIdInput'
 import Footer from './components/Footer'
+import firebase from './Firebase'
 
 export default {
   name: 'App',
@@ -45,6 +51,11 @@ export default {
       isShowHome: true,
       isShowProfile: false,
     }
+  },
+  created() {
+    firebase.onAuth()
+    firebase.onShareId()
+    firebase.onShowList()
   },
   components: {
     Header,
@@ -67,3 +78,9 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.tab {
+  margin-bottom: 24px;
+}
+</style>
