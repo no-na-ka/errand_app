@@ -48,11 +48,8 @@ export default {
     }
   },
   created() {
-    console.log(1)
     firebase.onAuth()
-    console.log(2)
     firebase.onShareId()
-    console.log(3)
     firebase.onShowList()
   },
   components: {

@@ -1,6 +1,6 @@
 <template>
     <section>
-        {{ store.state.user.uid }}
+        {{ userId }}
         <form>
             <input type="text" name="errandItemName"  v-model="shareId">
         </form>
@@ -18,6 +18,7 @@ export default {
     props:['isShowProfile'],
     data() {
         return {
+            userId: this.$store.state.user.uid,
             shareId: '',
         }
     },

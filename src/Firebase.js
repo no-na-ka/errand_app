@@ -29,18 +29,13 @@ export default {
   ////////// 読み込んだときの処理
   // ログイン情報保持用
   onAuth() {
-    console.log(4)
     firebase.auth().onAuthStateChanged(user => {
-      console.log(4-1)
       user = user ? user : {};
       store.dispatch('onUser', user);
-      console.log("スタート")
     });
   },
   onShareId() {
-    console.log(5)
     firebase.database().ref(store.state.user.uid).on('value', function(snapshot) {
-      console.log(5-1)
       let userId = store.state.user.uid
       let shareIdValue = snapshot.val()[userId].shareId
 
@@ -49,9 +44,7 @@ export default {
   },
   // データベースから情報取得
   onShowList() {
-    console.log(6)
     firebase.database().ref(store.state.user.uid).on('value', function(snapshot) {
-      console.log(6-1)
       let userId = store.state.user.uid
       let shareIdValue = snapshot.val()[userId].shareId      
       let listId
@@ -107,7 +100,10 @@ export default {
     .createUserWithEmailAndPassword(mail, pass)
     .then((user) => {
       store.dispatch('onUser', user);
-      this.setShareId(user.uid, user.uid)
+
+      let temporaryId = user.user.uid
+
+      this.setShareId(temporaryId, temporaryId)
     })
     .catch((error) => {
         // 失敗したときの処理
