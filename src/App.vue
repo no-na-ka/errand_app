@@ -3,27 +3,32 @@
     <Header />
 
     <main>
+
+      <section class="tab">
+        <button
+          type="button"
+          v-if="isShowHome"
+          @click="isChangeShowProfile">
+            買い物りすと入れちゃう
+        </button>
+        
+        <button
+          type="button"
+          v-if="isShowProfile"
+          @click="isChangeShowHome">
+            買い物りすと見ちゃう
+        </button>
+      </section>
+
       <Home 
         v-if="isShowHome" />
       <ErrandMenuList
         v-if="isShowHome" />
-      <button
-        type="button"
-        v-if="isShowHome"
-        @click="isChangeShowProfile">
-          買い物りすと入れちゃう
-      </button>
 
       <ErrandMenuInput
         v-if="isShowProfile" />
       <ShareIdInput
         v-if="isShowProfile" />
-      <button
-        type="button"
-        v-if="isShowProfile"
-        @click="isChangeShowHome">
-          買い物りすと見ちゃう
-      </button>
 
     </main>
     <Footer />
@@ -73,3 +78,9 @@ export default {
 
 }
 </script>
+
+<style scoped>
+.tab {
+  margin-bottom: 24px;
+}
+</style>
