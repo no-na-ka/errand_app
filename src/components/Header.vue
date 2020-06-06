@@ -9,7 +9,7 @@
                 <span v-else>出</span>
         </button>
         <nav
-            :class="{ active:isRegisterActive }"
+            :class="{ active:activeFlg }"
             class="nav-register">
             <ul class="nav-register__list">
                 <li
@@ -41,7 +41,6 @@ export default {
     name: 'Header',
     data() {
         return {
-            isRegisterActive: false,
             isSignInFlg: true,
             isSignUpFlg: false,
         }
@@ -55,11 +54,16 @@ export default {
         showFlg() {
             let showFlg = this.$store.getters.isShowFlg
             return showFlg
+        },
+        activeFlg() {
+            let activeFlg = this.$store.state.userRegisterFlg
+            return activeFlg
         }
     },
     methods: {
         active() {
-            this.isRegisterActive = !this.isRegisterActive
+            let registerFlg = !this.$store.state.userRegisterFlg
+            this.$store.dispatch('onRegisterFlg', registerFlg)
         },
         toggleSignUp() {
             this.isSignInFlg = false,

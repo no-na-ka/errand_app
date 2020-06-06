@@ -8,6 +8,7 @@ export default new Vuex.Store({
         user: {},
         list: {},
         shareId: '',
+        userRegisterFlg: false,
     },
     getters: {
         isShowFlg(state) {
@@ -16,7 +17,7 @@ export default new Vuex.Store({
         },
         isListShow(state) {
             return state.list
-        }
+        },
     },
     mutations: {
         setUser(state, userItem) {
@@ -27,7 +28,10 @@ export default new Vuex.Store({
         },
         setShareId(state, ShareIdItem) {
             state.shareId = ShareIdItem
-        }
+        },
+        setRegisterFlg(state, registerFlg) {
+            state.userRegisterFlg = registerFlg
+        },
     },
     actions: {
         onUser(state, userItem) {
@@ -38,6 +42,9 @@ export default new Vuex.Store({
         },
         onShareId(state, ShareIdItem) {
             state.commit('setShareId', ShareIdItem)
-        }
+        },
+        onRegisterFlg(state, registerFlg) {
+            state.commit('setRegisterFlg', registerFlg)
+        },
     }
 })
