@@ -79,10 +79,13 @@ export default {
       store.dispatch('onUser', user);
       this.onShareId()
       this.onShowList()
+
+      store.dispatch('onRegisterFlg', false)
     })
     .catch((error) => {
         // 失敗したときの処理
-        store.dispatch('onUser', error);
+        console.log(error)
+        store.dispatch('onUser', '')
     })
   },
   // google
@@ -104,10 +107,12 @@ export default {
       let temporaryId = user.user.uid
 
       this.setShareId(temporaryId, temporaryId)
+      store.dispatch('onRegisterFlg', false)
     })
     .catch((error) => {
         // 失敗したときの処理
-        store.dispatch('onUser', error);
+        console.log(error)
+        store.dispatch('onUser', '')
     })
   },
 
