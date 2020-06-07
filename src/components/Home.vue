@@ -6,29 +6,29 @@
 
 <script>
 
-export default {
-    name: 'Home',
-    props: ['isShowHome'],
-    computed: {
-        user () {
-            let user = this.$store.state.user
-            return user.uid
-        },
-        shareId() {
-            let shareId = this.$store.state.shareId
-            return shareId
-        },
-        list () {
-            let list = this.$store.state.list
-            return list
-        },
-    },
-    methods: {
-        showHome() {
-            this.$emit('isChangeShowProfile')
-        }
-    }
-}
+// export default {
+//     name: 'Home',
+//     props: ['isShowHome'],
+//     computed: {
+//         user () {
+//             let user = this.$store.state.user
+//             return user.uid
+//         },
+//         shareId() {
+//             let shareId = this.$store.state.shareId
+//             return shareId
+//         },
+//         list () {
+//             let list = this.$store.state.list
+//             return list
+//         },
+//     },
+//     methods: {
+//         showHome() {
+//             this.$emit('isChangeShowProfile')
+//         }
+//     }
+// }
 </script>
 
 <style>

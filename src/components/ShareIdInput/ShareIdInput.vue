@@ -20,10 +20,12 @@ import firebase from '../../Firebase'
 export default {
     name: 'errandItem',
     props:['isShowProfile'],
-    data() {
-        return {
-            userId: this.$store.state.user.uid,
-            shareId: this.$store.state.shareId,
+    computed: {
+        userId(){
+            return this.$store.state.user.uid
+        }, 
+        shareId(){
+            return this.$store.state.shareId
         }
     },
     methods: {
@@ -40,12 +42,20 @@ export default {
 </script>
 
 <style scoped>
+section {
+    margin-bottom: 36px;
+}
 .share_id_input-area {
     margin-bottom: 24px;
+    font-size: 12px;
+    color: #999;
 }
+
 .share_id_input-area span {
-    padding-left: 24px;
+    padding-left: 12px;
     display: block;
+    font-size: 14px;
+    color: #333;
 }
 
 .share_id_input-input form {
