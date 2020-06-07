@@ -27,8 +27,6 @@
 
       <ErrandMenuInput
         v-if="isShowProfile" />
-      <ShareIdInput
-        v-if="isShowProfile" />
 
     </main>
     <Footer />
@@ -40,7 +38,6 @@ import Home from './components/Home'
 import Header from './components/Header'
 import ErrandMenuInput from './components/ErrandMenu/ErrandMenuInput'
 import ErrandMenuList from './components/ErrandMenu/ErrandMenuList'
-import ShareIdInput from './components/ShareIdInput/ShareIdInput'
 import Footer from './components/Footer'
 import firebase from './Firebase'
 
@@ -62,7 +59,6 @@ export default {
     Home,
     ErrandMenuInput,
     ErrandMenuList,
-    ShareIdInput,
     Footer
   },
   methods: {

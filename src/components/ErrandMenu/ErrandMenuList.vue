@@ -23,8 +23,7 @@ export default {
             let list = this.$store.state.list
             return list
         }
-    }
-    
+    },    
 }
 </script>
 

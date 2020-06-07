@@ -36,8 +36,11 @@ export default {
   },
   onShareId() {
     firebase.database().ref(store.state.user.uid).on('value', function(snapshot) {
+      console.log(2)
+      console.log(store.state.user.uid)
       let userId = store.state.user.uid
       let shareIdValue = snapshot.val()[userId].shareId
+      console.log(snapshot.val()[userId].shareId)
 
       store.dispatch('onShareId', shareIdValue)
     })

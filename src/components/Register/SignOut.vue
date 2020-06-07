@@ -1,6 +1,5 @@
 <template>
     <div>
-        <p>logOut</p>
         <button @click="signOut()">logOut</button>
     </div>
 </template>
@@ -17,3 +16,10 @@ export default {
     },
 }
 </script>
+
+<style scoped>
+div {
+    display: flex;
+    justify-content: flex-end;
+}
+</style>
