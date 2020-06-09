@@ -1,7 +1,7 @@
 <template>
     <section>
 
-        <div class="errand-input__check-item">商品<span>{{ errandItemName }}</span>, 値段<span>{{ errandItemCost }}</span>円, <span>{{ errandItemCount }}</span>個</div>
+        <div class="errand_input-check_item">商品<span>{{ errandItemName }}</span>, 値段<span>{{ errandItemCost }}</span>円, <span>{{ errandItemCount }}</span>個</div>
         <form>
             <input type="text" name="errandItemName"  v-model="errandItemName">
             <input type="number" name="errandItemCost" v-model="errandItemCost">
@@ -67,11 +67,11 @@ input:nth-of-type(2) {
 input:nth-of-type(3) {
     width: 20vw;
 }
-.errand-input__check-item {
+.errand_input-check_item {
     font-size: 12px;
     color: #333;
 }
-.errand-input__check-item span {
+.errand_input-check_item span {
     font-size: 14px;
     padding: 0 4px;
 }

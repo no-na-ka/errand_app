@@ -15,11 +15,11 @@
         </button>
         <nav
             :class="{ active:activeFlg }"
-            class="nav-register">
-            <ul class="nav-register__list">
+            class="nav_register">
+            <ul class="nav_register-list">
                 <li
                     v-if="showFlg"
-                    class="nav-register__list-item">
+                    class="nav_register-list_item">
                     <SignIn
                         :isSignInFlg="isSignInFlg"
                         @toggleSignUp="toggleSignUp" />
@@ -29,7 +29,7 @@
                 </li>
                 <li
                     v-else
-                    class="nav-register__list-item">
+                    class="nav_register-list_item">
                     <ShareIdInput />
                     <SignOut />
                 </li>
@@ -96,7 +96,7 @@ export default {
     padding: 0 16px;
 }
 
-.nav-register {
+.nav_register {
     transition: 0.5s;
     position: absolute;
     width: 90vw;
@@ -110,7 +110,7 @@ export default {
     box-shadow: 0px 0px 6px 1px #ccc;
 }
 
-.nav-register.active {
+.nav_register.active {
     top: 80px;
 }
 

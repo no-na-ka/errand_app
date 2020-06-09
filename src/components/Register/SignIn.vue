@@ -1,15 +1,15 @@
 <template>
-    <div class="nav-form" v-if="isSignInFlg">
+    <div class="nav_form" v-if="isSignInFlg">
         <p>入った記憶あり</p>
         <form>
-            <div class="nav-form__item">
+            <div class="nav_form-item">
                 <label for="firebase-signInMail">mail:</label>
                 <input
                     type="email"
                     v-model="signInMail"
                     id="firebase-signInMail">
             </div>
-            <div class="nav-form__item">
+            <div class="nav_form-item">
                 <label for="firebase-signInPassword">password:</label>
                 <input
                     type="password"
@@ -19,7 +19,7 @@
 
             <div
                 @click="changeSignUp"
-                class="nav-form__change-btn">新しくアカウント作っちゃう</div>
+                class="nav_form-change_btn">新しくアカウント作っちゃう</div>
             
             <button type="button" @click="signInMailSubmit()">はいる</button>
         </form>
@@ -50,13 +50,13 @@ export default {
 </script>
 
 <style scoped>
-.nav-form {
+.nav_form {
     overflow: hidden;
 }
-.nav-form__item {
+.nav_form-item {
     margin-bottom: 8px;
 }
-.nav-form__item input {
+.nav_form-item input {
     display: block;
     border: 0;
     border-bottom: 1px solid #ccc;
@@ -64,15 +64,15 @@ export default {
     font-size: 5vw;
     padding: 8px;
 }
-.nav-form__item label {
+.nav_form-item label {
     font-size: 12px;
     color: #999;
 }
-.nav-form button {
+.nav_form button {
     margin-top: 24px;
     float: right;
 }
-.nav-form__change-btn {
+.nav_form-change_btn {
     margin-top: 24px;
     border-bottom: 1px solid #ccc;
     display: flex;

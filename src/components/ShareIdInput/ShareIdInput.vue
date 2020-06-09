@@ -2,11 +2,11 @@
     <section>
         <div class="share_id_input-area">
             自分のID:<span>{{ userId }}</span>
-            共有ID:<span>{{ shareId }}</span>
+            共有ID:<span>{{ showShareId }}</span>
         </div>
         <div class="share_id_input-input">
             <form>
-                <input type="text" name="errandItemName"  v-model="shareId">
+                <input type="text" name="errandItemName" v-model="shareId">
             </form>
 
             <button type="button" @click="setShareId()">設定</button>
@@ -20,11 +20,14 @@ import firebase from '../../Firebase'
 export default {
     name: 'errandItem',
     props:['isShowProfile'],
+    data() {
+        return {
+            userId: this.$store.state.user.uid,
+            shareId: this.$store.state.shareId
+        }
+    },
     computed: {
-        userId(){
-            return this.$store.state.user.uid
-        }, 
-        shareId(){
+        showShareId(){
             return this.$store.state.shareId
         }
     },
