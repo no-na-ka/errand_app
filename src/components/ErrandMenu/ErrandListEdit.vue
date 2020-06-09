@@ -18,10 +18,10 @@
             </ul>
             <div class="errand_list-edit_content">
                 <div class="errand_list-edit_input">
-                    <input type="text" name="editId" v-model="editId" />
                     <input type="text" name="editName" v-model="editName" />
                     <input type="number" name="editCost" v-model="editCost" />
                     <input type="number" name="editCount" v-model="editCount" />
+                    <input type="hidden" name="editId" v-model="editId" />
                 </div>
                 <div class="errand_list-edit_btn --edit">
                     <button type="button" v-on:click="errandEditSetBtn">更新しちゃうぜ</button>
@@ -102,5 +102,26 @@ export default {
 }
 .errand_list-edit_item span:nth-of-type(1) {
     flex: 2;
+}
+
+.errand_list-edit_content {
+    display: flex;
+}
+.errand_list-edit_input {
+    width: 100%;
+    display: flex;
+}
+.errand_list-edit_input input {
+    border: 1px solid #ccc;
+    width: 100%;
+}
+.errand_list-edit_input input:nth-of-type(1) {
+    flex: 2;
+}
+.errand_list-edit_input input:nth-of-type(2) {
+    flex: 1;
+}
+.errand_list-edit_input input:nth-of-type(3) {
+    flex: 1;    
 }
 </style>
