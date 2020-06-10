@@ -43,7 +43,6 @@ import Home from './components/Home'
 import Header from './components/Header'
 import ErrandMenuInput from './components/ErrandMenu/ErrandMenuInput'
 import ErrandMenuList from './components/ErrandMenu/ErrandMenuList'
-import ErrandMenuEdit from './components/ErrandMenu/ErrandListEdit'
 import Footer from './components/Footer'
 import firebase from './Firebase'
 
@@ -65,7 +64,6 @@ export default {
     Home,
     ErrandMenuInput,
     ErrandMenuList,
-    ErrandMenuEdit,
     Footer
   },
   computed: {
