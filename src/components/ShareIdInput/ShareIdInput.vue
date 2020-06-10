@@ -2,11 +2,11 @@
     <section>
         <div class="share_id_input-area">
             自分のID:<span>{{ userId }}</span>
-            共有ID:<span>{{ shareId }}</span>
+            共有ID:<span>{{ showShareId }}</span>
         </div>
         <div class="share_id_input-input">
             <form>
-                <input type="text" name="errandItemName"  v-model="shareId">
+                <input type="text" name="errandItemName" v-model="shareId">
             </form>
 
             <button type="button" @click="setShareId()">設定</button>
@@ -23,7 +23,12 @@ export default {
     data() {
         return {
             userId: this.$store.state.user.uid,
-            shareId: this.$store.state.shareId,
+            shareId: this.$store.state.shareId
+        }
+    },
+    computed: {
+        showShareId(){
+            return this.$store.state.shareId
         }
     },
     methods: {
@@ -40,12 +45,20 @@ export default {
 </script>
 
 <style scoped>
+section {
+    margin-bottom: 36px;
+}
 .share_id_input-area {
     margin-bottom: 24px;
+    font-size: 12px;
+    color: #999;
 }
+
 .share_id_input-area span {
-    padding-left: 24px;
+    padding-left: 12px;
     display: block;
+    font-size: 14px;
+    color: #333;
 }
 
 .share_id_input-input form {

@@ -7,8 +7,8 @@
             <li v-for="list in lists" :key="list.index">
                 <div class="errand_menu_list-list_item">
                     <span class="errand_menu_list-list_item_name">{{ list.name }}</span>
-                    <span class="errand_menu_list-list_item_name">{{ list.cost }}<small>円</small></span>
-                    <span class="errand_menu_list-list_item_name">{{ list.count }}<small>個</small></span>
+                    <span class="errand_menu_list-list_item_cost">{{ list.cost }}<small>円</small></span>
+                    <span class="errand_menu_list-list_item_count">{{ list.count }}<small>個</small></span>
                 </div>
             </li>
         </ul>
@@ -23,8 +23,7 @@ export default {
             let list = this.$store.state.list
             return list
         }
-    }
-    
+    },    
 }
 </script>
 

@@ -4,17 +4,22 @@
 
         <button
             type="button"
-            v-on:click="active">
+            v-on:click="active"
+            class="menu-btn">
                 <span v-if="showFlg">入</span>
-                <span v-else>出</span>
+                <span v-else class="menu-btn_icon --open">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                </span>
         </button>
         <nav
             :class="{ active:activeFlg }"
-            class="nav-register">
-            <ul class="nav-register__list">
+            class="nav_register">
+            <ul class="nav_register-list">
                 <li
                     v-if="showFlg"
-                    class="nav-register__list-item">
+                    class="nav_register-list_item">
                     <SignIn
                         :isSignInFlg="isSignInFlg"
                         @toggleSignUp="toggleSignUp" />
@@ -24,7 +29,8 @@
                 </li>
                 <li
                     v-else
-                    class="nav-register__list-item">
+                    class="nav_register-list_item">
+                    <ShareIdInput />
                     <SignOut />
                 </li>
             </ul>
@@ -36,6 +42,7 @@
 import SignIn from  './Register/SignIn'
 import SignUp from  './Register/SignUp'
 import SignOut from './Register/SignOut'
+import ShareIdInput from './ShareIdInput/ShareIdInput'
 
 export default {
     name: 'Header',
@@ -48,7 +55,8 @@ export default {
     components: {
         SignIn,
         SignUp,
-        SignOut
+        SignOut,
+        ShareIdInput,
     },
     computed: {
         showFlg() {
@@ -88,7 +96,7 @@ export default {
     padding: 0 16px;
 }
 
-.nav-register {
+.nav_register {
     transition: 0.5s;
     position: absolute;
     width: 90vw;
@@ -102,7 +110,42 @@ export default {
     box-shadow: 0px 0px 6px 1px #ccc;
 }
 
-.nav-register.active {
+.nav_register.active {
     top: 80px;
+}
+
+.menu-btn {
+    position: relative;
+}
+
+.menu-btn_icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.menu-btn_icon i {
+    display: block;
+    width: 16px;
+    height: 2px;
+    background-color: #bbb;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.menu-btn_icon i:nth-of-type(1) {
+    top: -10px;
+}
+
+.menu-btn_icon i:nth-of-type(2) {
+    top: 11px;
 }
 </style>

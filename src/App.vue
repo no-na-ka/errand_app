@@ -27,7 +27,7 @@
 
       <ErrandMenuInput
         v-if="isShowProfile" />
-      <ShareIdInput
+      <ErrandMenuEdit
         v-if="isShowProfile" />
 
     </main>
@@ -40,7 +40,7 @@ import Home from './components/Home'
 import Header from './components/Header'
 import ErrandMenuInput from './components/ErrandMenu/ErrandMenuInput'
 import ErrandMenuList from './components/ErrandMenu/ErrandMenuList'
-import ShareIdInput from './components/ShareIdInput/ShareIdInput'
+import ErrandMenuEdit from './components/ErrandMenu/ErrandListEdit'
 import Footer from './components/Footer'
 import firebase from './Firebase'
 
@@ -62,7 +62,7 @@ export default {
     Home,
     ErrandMenuInput,
     ErrandMenuList,
-    ShareIdInput,
+    ErrandMenuEdit,
     Footer
   },
   methods: {
@@ -79,8 +79,28 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+button {
+    appearance: none;
+    border: 1px solid #ddd;
+    padding: 0 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+}
+main {
+    min-height: 88vh;
+    padding: 16px;
+}
 .tab {
   margin-bottom: 24px;
 }
+
 </style>

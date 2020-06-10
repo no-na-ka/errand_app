@@ -138,5 +138,25 @@ export default {
 
     store.dispatch('onShareId', e)
 
+  },
+
+
+  ////////// データ更新
+  editErrandList(id, name, cost, count) {
+    firebase.database().ref(store.state.shareId).child(id).update({
+      name: name,
+      cost: cost,
+      count: count
+    }).then(() => {
+      console.log('成功じゃ')
+    })
+  },
+
+  ////////// データ削除
+  deleteErrandList(id) {
+    firebase.database().ref(store.state.shareId).child(id).remove().then(() => {
+      console.log('成功じゃ')
+    })
   }
+  
 }
