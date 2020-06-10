@@ -1,9 +1,9 @@
 <template>
-  <div id="app">
-    <Header />
+<div id="app">
+  <Header />
 
-    <main>
-
+  <main>
+    <div v-if="isSignIn">
       <section class="tab">
         <button
           type="button"
@@ -27,12 +27,15 @@
 
       <ErrandMenuInput
         v-if="isShowProfile" />
-      <ErrandMenuEdit
-        v-if="isShowProfile" />
+    </div>
 
-    </main>
+    <div v-else>
+      サインインするんじゃよ
+    </div>
+  </main>
+
     <Footer />
-  </div>
+</div>
 </template>
 
 <script>
@@ -64,6 +67,12 @@ export default {
     ErrandMenuList,
     ErrandMenuEdit,
     Footer
+  },
+  computed: {
+    isSignIn() {
+      let SignInFlg = this.$store.state.user.uid != null
+      return SignInFlg
+    }
   },
   methods: {
     isChangeShowProfile() {
