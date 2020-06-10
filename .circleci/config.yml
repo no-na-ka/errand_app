@@ -1,25 +1,13 @@
-version: 2
-jobs:
-  deploy_dev: # ジョブ名
-    docker:
-      - image: circleci/node:10.7 # ジョブ実行環境のDockerイメージを記述
-    steps:
-      - checkout # ソースコードのチェックアウト
-      - run: # 順に実行したいコマンドとコマンドに名前をつけます
-          name: npm install
-          command: npm i
-      - run:
-          name: build
-          command: npm run build
-      - run:
-          name: deploy to Firebase Hosting
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN # プロジェクト上のfirebase-toolsでデプロイします
-
+# Use the latest 2.1 version of CircleCI pipeline process engine. See: https://circleci.com/docs/2.0/configuration-reference
+version: 2.1
+# Use a package of configuration called an orb.
+orbs:
+  # Declare a dependency on the welcome-orb
+  welcome: circleci/welcome-orb@0.4.1
+# Orchestrate or schedule a set of jobs
 workflows:
-  version: 2
-  deploy_dev: # ワークフローの名前
+  # Name the workflow "welcome"
+  welcome:
+    # Run the welcome/run job in its own container
     jobs:
-      - deploy_dev: # 上で定義したジョブを指定します
-          filters:
-            branches:
-              only: develop # developブランチのみを実行対象とします
+      - welcome/run
