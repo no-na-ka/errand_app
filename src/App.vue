@@ -29,6 +29,9 @@
         v-if="isShowProfile" />
       <ErrandMenuEdit
         v-if="isShowProfile" />
+
+      <HistoryList
+        v-if="isShowProfile" />
     </div>
 
     <div v-else>
@@ -36,7 +39,7 @@
     </div>
   </main>
 
-    <Footer />
+  <Footer />
 </div>
 </template>
 
@@ -46,6 +49,7 @@ import Header from './components/Header'
 import ErrandMenuInput from './components/ErrandMenu/ErrandMenuInput'
 import ErrandMenuList from './components/ErrandMenu/ErrandMenuList'
 import ErrandMenuEdit from './components/ErrandMenu/ErrandListEdit'
+import HistoryList from './components/Historys/HistoryList'
 import Footer from './components/Footer'
 import firebase from './Firebase'
 
@@ -68,6 +72,7 @@ export default {
     ErrandMenuInput,
     ErrandMenuList,
     ErrandMenuEdit,
+    HistoryList,
     Footer
   },
   computed: {
