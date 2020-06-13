@@ -6,9 +6,9 @@
     <ul class="history_list-list">
         <li v-for="(list, index) in lists" :key="index">
             <div class="history_list-list_item">
-                <span class="history_list-list_item_name">{{ list.name }}</span>
-                <span class="history_list-list_item_cost">{{ list.cost }}<small>円</small></span>
-                <span class="history_list-list_item_count">{{ list.count }}<small>個</small></span>
+                <span class="history_list-list_item_name">{{ list.items.name }}</span>
+                <span class="history_list-list_item_cost">{{ list.items.cost }}<small>円</small></span>
+                <span class="history_list-list_item_count">{{ list.items.count }}<small>個</small></span>
             </div>
         </li>
     </ul>

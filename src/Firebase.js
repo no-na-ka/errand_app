@@ -124,7 +124,11 @@ export default {
     firebase
     .database()
     .ref(roomId)
-    .push(dataDisc);
+    .push({
+      items: dataDisc,
+      createdAt: firebase.database.ServerValue.TIMESTAMP,
+      updatedAt: firebase.database.ServerValue.TIMESTAMP,
+    });
   },
 
 
@@ -144,9 +148,12 @@ export default {
   ////////// データ更新
   editErrandList(id, name, cost, count) {
     firebase.database().ref(store.state.shareId).child(id).update({
-      name: name,
-      cost: cost,
-      count: count
+      items: {
+        name: name,
+        cost: cost,
+        count: count,
+      },
+      updatedAt: firebase.database.ServerValue.TIMESTAMP,
     }).then(() => {
       console.log('成功じゃ')
     })
