@@ -8,11 +8,11 @@
                 <li v-for="(list, index) in lists" v-bind:key="index" v-on:click="errandEditList">
                     <div class="errand_list-edit_item" v-bind:data-edit_Id="index" ref="target">
                         <span class="errand_list-edit_item_name">
-                            {{ list.name }}</span>
+                            {{ list.items.name }}</span>
                         <span class="errand_list-edit_item_cost">
-                            {{ list.cost }}<small>円</small></span>
+                            {{ list.items.cost }}<small>円</small></span>
                         <span class="errand_list-edit_item_count">
-                            {{ list.count }}<small>個</small></span>
+                            {{ list.items.count }}<small>個</small></span>
                     </div>
                 </li>
             </ul>
