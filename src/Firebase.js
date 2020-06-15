@@ -126,6 +126,7 @@ export default {
     .ref(roomId)
     .push({
       items: dataDisc,
+      showStatus: 1,
       createdAt: firebase.database.ServerValue.TIMESTAMP,
       updatedAt: firebase.database.ServerValue.TIMESTAMP,
     });
@@ -145,8 +146,34 @@ export default {
   },
 
 
-  ////////// データ更新
-  editErrandList(id, name, cost, count) {
+  ////////// データ更新 name
+  editErrandListName(id, name, cost, count) {
+    firebase.database().ref(store.state.shareId).child(id).update({
+      items: {
+        name: name,
+        cost: cost,
+        count: count,
+      },
+      updatedAt: firebase.database.ServerValue.TIMESTAMP,
+    }).then(() => {
+      console.log('成功じゃ')
+    })
+  },
+  ////////// データ更新 name
+  editErrandListCost(id, name, cost, count) {
+    firebase.database().ref(store.state.shareId).child(id).update({
+      items: {
+        name: name,
+        cost: cost,
+        count: count,
+      },
+      updatedAt: firebase.database.ServerValue.TIMESTAMP,
+    }).then(() => {
+      console.log('成功じゃ')
+    })
+  },
+  ////////// データ更新 name
+  editErrandListCount(id, name, cost, count) {
     firebase.database().ref(store.state.shareId).child(id).update({
       items: {
         name: name,
@@ -164,6 +191,14 @@ export default {
     firebase.database().ref(store.state.shareId).child(id).remove().then(() => {
       console.log('成功じゃ')
     })
-  }
+  },
+
+  ////////// 表示するリストのステータス変更
+  errandShowStatusChange(id, status) {
+    firebase.database().ref(store.state.shareId).child(id).update({
+      showStatus: status,
+      updatedAt: firebase.database.ServerValue.TIMESTAMP,
+    })
+  },
   
 }
