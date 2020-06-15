@@ -159,7 +159,7 @@ export default {
       console.log('成功じゃ')
     })
   },
-  ////////// データ更新 name
+  ////////// データ更新 cost
   editErrandListCost(id, name, cost, count) {
     firebase.database().ref(store.state.shareId).child(id).update({
       items: {
@@ -172,7 +172,7 @@ export default {
       console.log('成功じゃ')
     })
   },
-  ////////// データ更新 name
+  ////////// データ更新 count
   editErrandListCount(id, name, cost, count) {
     firebase.database().ref(store.state.shareId).child(id).update({
       items: {

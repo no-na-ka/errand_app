@@ -5,19 +5,19 @@
         </ul>
         <div class="">
             <ul class="errand_list-edit">
-                <li v-for="(list, index) in lists" v-bind:key="index" v-on:click="errandEditList" v-bind:data-edit_Id="index" ref="target">
-                    <div class="errand_list-edit_item" v-if="list.showStatus == 1">
+                <li v-for="(list, index) in lists" v-bind:key="index"
+                    v-on:click="errandEditList"
+                    ref="target">
+                    <div class="errand_list-edit_item" v-if="list.showStatus == 1" v-bind:data-edit_id="index">
                         <input type="text" name="editName" v-model="list.items.name" v-on:change="errandEditSetName" />
                         <input type="number" name="editCost" v-model="list.items.cost" v-on:change="errandEditSetCost" />
                         <input type="number" name="editCount" v-model="list.items.count" v-on:change="errandEditSetCount" />
                     </div>
-                    <div class="errand_list-edit_checkbox" v-on:click="errandEditCheck" v-if="list.showStatus == 1"></div>
+                    <div class="errand_list-edit_checkbox" v-if="list.showStatus == 1" v-bind:data-edit_id="index">
+                        <span v-on:click="errandEditCheck"></span>
+                    </div>
                 </li>
             </ul>
-
-            <div class="errand_list-edit_btn --delete">
-                <button type="button" v-on:click="errandEditDeleteBtn">消しちゃうぜ</button>
-            </div>
         </div>
 
     </section>
@@ -44,25 +44,20 @@ export default {
     },
     methods: {
         errandEditList(e) {
-            let clickDataEdit = this.$store.state.list
+            console.log(0)
+            console.log(e)
             let clickDataEditId = e.target.parentNode.dataset.edit_id // クリックした要素の親要素にあるdataを取得
+            let clickDataEdit = this.$store.state.list
             let clickDataEditName = clickDataEdit[clickDataEditId].items.name
             let clickDataEditCost = clickDataEdit[clickDataEditId].items.cost
             let clickDataEditCount = clickDataEdit[clickDataEditId].items.count
+            console.log(0)
 
             this.editId = clickDataEditId
             this.editName = clickDataEditName
             this.editCost = clickDataEditCost
             this.editCount = clickDataEditCount
 
-        },
-        errandEditDeleteBtn(e) {
-            let changeEditId =  e.target.parentNode.dataset.edit_id
-            let changeEditName = this.editName
-            let changeEditCost = this.editCost
-            let changeEditCount = this.editCount
-
-            firebase.deleteErrandList(changeEditId, changeEditName, changeEditCost, changeEditCount)
         },
         errandEditSetName(e) {
             let changeEditId = e.target.parentNode.dataset.edit_id
@@ -78,7 +73,7 @@ export default {
             let changeEditCost = e.target.value
             let changeEditCount = this.editCount
 
-            firebase.editErrandListName(changeEditId, changeEditName, changeEditCost, changeEditCount)
+            firebase.editErrandListCost(changeEditId, changeEditName, changeEditCost, changeEditCount)
         },
          errandEditSetCount(e) {
             let changeEditId = e.target.parentNode.dataset.edit_id
@@ -86,7 +81,7 @@ export default {
             let changeEditCost = this.editCost
             let changeEditCount = e.target.value
 
-            firebase.editErrandListName(changeEditId, changeEditName, changeEditCost, changeEditCount)
+            firebase.editErrandListCount(changeEditId, changeEditName, changeEditCost, changeEditCount)
         },
         errandEditCheck(e) {
             let changeEditId = e.target.parentNode.dataset.edit_id
@@ -131,12 +126,19 @@ export default {
     left: 8px;
     bottom: 0;
     margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.errand_list-edit_checkbox span {
     display: block;
     width: 16px;
     height: 16px;
     border: 1px solid #ccc;
+    position: relative;
 }
-.errand_list-edit_checkbox::before {
+
+.errand_list-edit_checkbox span::before {
     content: "";
     width: 16px;
     height: 2px;
@@ -150,7 +152,7 @@ export default {
     border-radius: 2px;
 }
 
-.errand_list-edit_checkbox::after {
+.errand_list-edit_checkbox span::after {
     content: "";
     width: 6px;
     height: 2px;
