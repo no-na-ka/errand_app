@@ -5,7 +5,7 @@
         </ul>
         <ul class="errand_menu_list-list">
             <li v-for="(list, index) in lists" :key="index">
-                <div class="errand_menu_list-list_item">
+                <div class="errand_menu_list-list_item" v-if="list.showStatus == 1">
                     <span class="errand_menu_list-list_item_name">{{ list.items.name }}</span>
                     <span class="errand_menu_list-list_item_cost">{{ list.items.cost }}<small>円</small></span>
                     <span class="errand_menu_list-list_item_count">{{ list.items.count }}<small>個</small></span>
