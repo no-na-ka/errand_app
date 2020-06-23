@@ -36,6 +36,11 @@ export default {
             const user = this.$store.state.user
 
             firebase.setErandList(user.uid, this.errandList)
+
+            // 登録の有無関係なく、クリックされたら入力内容を削除
+            this.errandItemName = ''
+            this.errandItemCost = ''
+            this.errandItemCount = ''
         }
 
     }

@@ -44,14 +44,11 @@ export default {
     },
     methods: {
         errandEditList(e) {
-            console.log(0)
-            console.log(e)
             let clickDataEditId = e.target.parentNode.dataset.edit_id // クリックした要素の親要素にあるdataを取得
             let clickDataEdit = this.$store.state.list
             let clickDataEditName = clickDataEdit[clickDataEditId].items.name
             let clickDataEditCost = clickDataEdit[clickDataEditId].items.cost
             let clickDataEditCount = clickDataEdit[clickDataEditId].items.count
-            console.log(0)
 
             this.editId = clickDataEditId
             this.editName = clickDataEditName
