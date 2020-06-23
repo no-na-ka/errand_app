@@ -36,6 +36,10 @@ export default {
             const user = this.$store.state.user
 
             firebase.setErandList(user.uid, this.errandList)
+
+            this.errandItemName = ''
+            this.errandItemCost = ''
+            this.errandItemCount = ''
         }
 
     }
