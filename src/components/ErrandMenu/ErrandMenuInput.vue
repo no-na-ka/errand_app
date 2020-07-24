@@ -4,8 +4,8 @@
         <div class="errand_input-check_item">商品<span>{{ errandItemName }}</span>, 値段<span>{{ errandItemCost }}</span>円, <span>{{ errandItemCount }}</span>個</div>
         <form>
             <input type="text" name="errandItemName"  v-model="errandItemName">
-            <input type="number" name="errandItemCost" v-model="errandItemCost">
-            <input type="number" name="errandItemCount" v-model="errandItemCount">
+            <input type="text" name="errandItemCost" v-model="errandItemCost">
+            <input type="text" name="errandItemCount" v-model="errandItemCount">
         </form>
 
         <button type="button" @click="setErandList()">りすとに入れちゃう</button>
@@ -25,6 +25,18 @@ export default {
             errandItemCount: '',
             erandList: {}
         }
+    },
+    watch: {
+        errandItemCost: function(e) {
+            this.errandItemCost = e.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+                return String.fromCharCode(s.charCodeAt(0) - 65248)
+            })
+        },
+        errandItemCount: function(e) {
+            this.errandItemCount = e.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+                return String.fromCharCode(s.charCodeAt(0) - 65248)
+            })
+        },
     },
     methods: {
         setErandList() {
