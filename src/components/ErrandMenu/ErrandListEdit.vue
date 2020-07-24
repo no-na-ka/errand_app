@@ -10,8 +10,8 @@
                     ref="target">
                     <div class="errand_list-edit_item" v-if="list.showStatus == 1" v-bind:data-edit_id="index">
                         <input type="text" name="editName" v-model="list.items.name" v-on:change="errandEditSetName" />
-                        <input type="number" name="editCost" v-model="list.items.cost" v-on:change="errandEditSetCost" />
-                        <input type="number" name="editCount" v-model="list.items.count" v-on:change="errandEditSetCount" />
+                        <input type="text" name="editCost" v-model="list.items.cost" v-on:change="errandEditSetCost" />
+                        <input type="text" name="editCount" v-model="list.items.count" v-on:change="errandEditSetCount" />
                     </div>
                     <div class="errand_list-edit_checkbox" v-if="list.showStatus == 1" v-bind:data-edit_id="index">
                         <span v-on:click="errandEditCheck"></span>
@@ -25,6 +25,7 @@
 
 <script>
 import firebase from '../../Firebase' 
+import numChange from '../common/numChange'
 
 export default {
     name: 'errandMenuEdit',
@@ -67,7 +68,7 @@ export default {
          errandEditSetCost(e) {
             let changeEditId = e.target.parentNode.dataset.edit_id
             let changeEditName = this.editName
-            let changeEditCost = e.target.value
+            let changeEditCost = numChange.numChange(e.target.value)
             let changeEditCount = this.editCount
 
             firebase.editErrandListCost(changeEditId, changeEditName, changeEditCost, changeEditCount)
@@ -76,7 +77,7 @@ export default {
             let changeEditId = e.target.parentNode.dataset.edit_id
             let changeEditName = this.editName
             let changeEditCost = this.editCost
-            let changeEditCount = e.target.value
+            let changeEditCount = numChange.numChange(e.target.value)
 
             firebase.editErrandListCount(changeEditId, changeEditName, changeEditCost, changeEditCount)
         },
@@ -105,6 +106,7 @@ export default {
     border: 0;
     border-bottom: 1px solid #ccc;
     width: 100%;
+    margin-right: 16px;
 }
 .errand_list-edit_item input:nth-of-type(1) {
     flex: 2;
@@ -114,7 +116,8 @@ export default {
     flex: 1;
 }
 .errand_list-edit_item input:nth-of-type(3) {
-    flex: 1;    
+    flex: 1;
+    margin-right: 0;
 }
 
 .errand_list-edit_checkbox {
