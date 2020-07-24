@@ -42,12 +42,6 @@ export default {
             let deleteDataCost = deleteData[deleteId].items.cost
             let deleteDataCount = deleteData[deleteId].items.count
 
-            console.log(deleteData)
-            console.log(deleteId)
-            console.log(deleteDataName)
-            console.log(deleteDataCost)
-            console.log(deleteDataCount)
-
             firebase.deleteErrandList(deleteId, deleteDataName, deleteDataCost, deleteDataCount)
         },
     },
