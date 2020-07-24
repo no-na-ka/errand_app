@@ -14,6 +14,7 @@
 
 <script>
 import firebase from '../../Firebase'
+import numChange from '../common/numChange'
 
 export default {
     name: 'errandItem',
@@ -28,14 +29,10 @@ export default {
     },
     watch: {
         errandItemCost: function(e) {
-            this.errandItemCost = e.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
-                return String.fromCharCode(s.charCodeAt(0) - 65248)
-            })
+            this.errandItemCost = numChange.numChange(e)
         },
         errandItemCount: function(e) {
-            this.errandItemCount = e.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
-                return String.fromCharCode(s.charCodeAt(0) - 65248)
-            })
+            this.errandItemCount = numChange.numChange(e)
         },
     },
     methods: {
@@ -54,9 +51,7 @@ export default {
             this.errandItemCost = ''
             this.errandItemCount = ''
         }
-
     }
-    
 }
 </script>
 
