@@ -4,3 +4,6 @@
 [submodule "apps/receipt-backend"]
 	path = apps/receipt-backend
 	url = git@github.com:no-na-ka/receipt-backend.git
+[submodule "apps/receipt-parser"]
+	path = apps/receipt-parser
+	url = git@github.com:no-na-ka/receipt-parser.git
