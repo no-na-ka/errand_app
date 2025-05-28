@@ -1,9 +1,0 @@
-services:
-  frontend:
-    build:
-      context: ./apps/receipt-frontend
-    ports:
-      - "3000:3000"
-    working_dir: /app
-    volumes:
-      - .:/app
