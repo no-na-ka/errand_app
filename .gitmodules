@@ -1,6 +1,6 @@
 [submodule "apps/receipt-frontend"]
 	path = apps/receipt-frontend
-	url = git@github.com:no-na-ka/receipt-frontend
+	url = git@github.com:no-na-ka/receipt-frontend.git
 [submodule "apps/receipt-backend"]
 	path = apps/receipt-backend
 	url = git@github.com:no-na-ka/receipt-backend.git
