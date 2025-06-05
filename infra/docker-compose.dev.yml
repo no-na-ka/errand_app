@@ -2,8 +2,9 @@ services:
   frontend:
     build:
       context: ../apps/receipt-frontend
+      dockerfile: Dockerfile.dev
     ports:
-      - "${FRONTEND_PORT}:3000"
+      - "${FRONTEND_PORT}:3333"
     volumes:
       - ../apps/receipt-frontend:/app
       - /app/node_modules  # ホスト側のnode_modulesとの競合回避
@@ -17,9 +18,10 @@ services:
       context: ../apps/receipt-backend
       dockerfile: Dockerfile.dev
     ports:
-      - "${BACKEND_PORT}:8080"
+      - "${BACKEND_PORT}:7777"
     volumes:
       - ../apps/receipt-backend:/app
     working_dir: /app
     environment:
       - GO_ENV=development
+    command: air
